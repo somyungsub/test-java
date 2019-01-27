@@ -1,9 +1,7 @@
 package browserlog;
 
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import excel.BrowserData;
-import excel.ExcelJxlsUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,8 +15,8 @@ import static java.util.stream.Collectors.*;
 
 public class BrowserLogTest {
 
-  private static long successTotal = 0;
-  private static long failTotal = 0;
+//  private static long successTotal = 0;
+//  private static long failTotal = 0;
 
   private static Map<OperationSystemName, Map<Boolean,Long>> osData = new HashMap<>();
   private static Map<BrowserName, Map<Boolean,Long>> nameData = new HashMap<>();
@@ -27,7 +25,7 @@ public class BrowserLogTest {
   public static void main(String[] args) throws IOException {
 
     // 디렉터리 제외한 파일Path만 얻기
-    Stream<Path> stream = Files.walk(Paths.get("/Users/myungsubso/Desktop/log/hompage1/access.log_20181203"));
+    Stream<Path> stream = Files.walk(Paths.get("/Users/myungsubso/Desktop/log/homepage1/access.log_20181203"));
     Stream<Path> pathStream = stream.filter(path -> !Files.isDirectory(path));
 
 
@@ -38,13 +36,14 @@ public class BrowserLogTest {
 
     Stream<List<Browser>> streamList = pathStream.map(path -> BrowserUtils.getBrowserList(path));
 
-    // 2. 데이터 Optional화
+    // 2. 데이터 Optional 변환
     Optional<List<Browser>> optionalBrowsers
             = streamList.reduce((browsers, browsers2) -> {
       browsers.addAll(browsers2);
       return browsers;
     });
 
+    // 3. 실행
     executeBrowserNameAndOS(optionalBrowsers);  // Name, OS
     executeBrowserName(optionalBrowsers);       // Name
     executeBrowserOS(optionalBrowsers);       // OS
@@ -56,13 +55,14 @@ public class BrowserLogTest {
     browserList.stream().forEach(System.out::println);
 
 
-    ExcelJxlsUtils.makeExcel(browserList,osList);
+    // 엑셀만들기
+//    ExcelJxlsUtils.makeExcel(browserList,osList);
 
     // 성공, 실패, 전체 횟수
-    System.out.println(" ================================== ");
-    System.out.println("successTotal = " + successTotal);
-    System.out.println("failTotal = " + failTotal);
-    System.out.println("Total = " + (successTotal + failTotal));
+//    System.out.println(" ================================== ");
+//    System.out.println("successTotal = " + successTotal);
+//    System.out.println("failTotal = " + failTotal);
+//    System.out.println("Total = " + (successTotal + failTotal));
 
   }
   private static <T> List<BrowserData> getBrowserData(Map<T,Map<Boolean, Long>> map) {
@@ -132,17 +132,11 @@ public class BrowserLogTest {
 
 
   private static long calculationSuccess(List<Browser> browsers) {
-    long successCount = browsers.stream().collect(summingLong(v -> v.getSuccessCount()));
-//    System.out.println("\t\tsuccessCount = " + successCount);
-//    successTotal += successCount;
-    return successCount;
+    return browsers.stream().collect(summingLong(v -> v.getSuccessCount()));
   }
 
   private static long calculationFail(List<Browser> browsers) {
-    long failCount = browsers.stream().collect(summingLong(v -> v.getFailCount()));
-//    System.out.println("\t\tfailCount = " + failCount);
-//    failTotal += failCount;
-    return failCount;
+    return browsers.stream().collect(summingLong(v -> v.getFailCount()));
   }
 
 
