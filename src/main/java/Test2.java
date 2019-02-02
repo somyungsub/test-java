@@ -14,10 +14,16 @@ public class Test2 {
 
     String s4 = "파이어폭스 : Mozilla/5.0 (Windows NT 6.1; WOW64; rv:32.0) Gecko/20100101 Firefox/32.0";
     System.out.println("getVersion(s4,\"Firefox\") = " + getVersion(s4,"Firefox"));
+
+//    TestClass.test();
+
+
   }
 
   private static String getVersion(String value, String type) {
     String temp = value.substring(value.indexOf(type));
     return temp.substring(temp.indexOf("/")+1, temp.indexOf("."));  //버전 걸러내기
   }
+
+
 }

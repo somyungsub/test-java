@@ -1,7 +1,6 @@
 package browserlog;
 
 import java.io.BufferedReader;
-import java.io.Closeable;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -10,10 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
@@ -22,7 +18,7 @@ public class BrowserUtils {
 
     public static List<Browser> getBrowserList(Path path) {
     System.out.println("path = " + path);
-    try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+    try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.ISO_8859_1)) {
 
       Map<BrowserName, Map<OperationSystemName, List<String>>> browserMap
               = getNameOsGroup(br.lines(), BrowserName::getBrowserName, OperationSystemName::getOperationSystemName);

@@ -1,6 +1,15 @@
 public class TestClass {
+
     private String name;
     private int age;
+
+    static {
+        System.out.println("static inner");
+    }
+
+    public TestClass() {
+        System.out.println("constructor");
+    }
 
     public String getName() {
         return name;
@@ -24,5 +33,9 @@ public class TestClass {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    public static void test() {
+        System.out.println("testMethod");
     }
 }

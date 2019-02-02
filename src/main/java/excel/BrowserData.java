@@ -1,6 +1,6 @@
 package excel;
 
-public class BrowserData {
+public class BrowserData implements Comparable<BrowserData> {
   private String browserName;
   private String osName;
   private long failCount;
@@ -66,5 +66,10 @@ public class BrowserData {
             ", successCount=" + successCount +
             ", rate=" + rate +
             '}';
+  }
+
+  @Override
+  public int compareTo(BrowserData o) {
+    return this.getSuccessCount() < o.getSuccessCount() ? 1 : -1;
   }
 }
