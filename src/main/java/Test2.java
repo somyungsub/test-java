@@ -1,5 +1,10 @@
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Test2 {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     String s = "크롬 : Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.2062.124 Safari/ 537.36";
     String temp = s.substring(s.indexOf("Chrome/"));
     System.out.println("temp = " + temp.substring(temp.indexOf("/")+1, temp.indexOf(".")));
@@ -17,7 +22,31 @@ public class Test2 {
 
 //    TestClass.test();
 
+    int num = -10;
+    System.out.println(num<<2);
+    System.out.println(num>>10);
+    System.out.println(num>>>1);
 
+    Object obj = new Object();
+    Object obj2 = new String();
+    TestClass testClass = new TestClass();
+    TestClassSub1 testClass1 = new TestClassSub1();
+    EnumTest enumTest = EnumTest.INSTANCE;
+
+    System.out.println(obj instanceof Object);
+    System.out.println(obj instanceof String);
+    System.out.println(obj2 instanceof String);
+    System.out.println(testClass instanceof TestClassSub1);
+    System.out.println(testClass instanceof TestClass);
+    System.out.println(testClass instanceof Object);
+    System.out.println(testClass1 instanceof TestClassSub1);
+    System.out.println(testClass1 instanceof TestClass);
+
+    List<String> list = new ArrayList<>(20);
+    Collections.fill(list, "a");
+    list.forEach(System.out::println);
+//    List<String> list2 = new LinkedList<>();
+    String s1 = new String();
   }
 
   private static String getVersion(String value, String type) {

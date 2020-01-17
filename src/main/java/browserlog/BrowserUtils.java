@@ -17,6 +17,7 @@ import static java.util.stream.Collectors.*;
 public class BrowserUtils {
 
     public static List<Browser> getBrowserList(Path path) {
+
     System.out.println("path = " + path);
     try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.ISO_8859_1)) {
 

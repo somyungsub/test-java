@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.EOFException;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -38,6 +35,12 @@ public class Test {
 
 
     test3();
+
+    try {
+      FileInputStream is = new FileInputStream(new File("aa.txt"));
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
 
   }
 

@@ -9,9 +9,7 @@ public enum OperationSystemName {
   ETC("ETC")
   ;
 
-
-
-  private String value;
+  private final String value;
 
   OperationSystemName(String value) {
     this.value = value;
@@ -27,6 +25,10 @@ public enum OperationSystemName {
     - 팩토리 메서드
    */
   public static OperationSystemName getOperationSystemName(String dataValue) {
+
+    String s = new String();
+
+
     if (dataValue.contains("Macintosh")) {
       return OperationSystemName.MACOS;
     } else if (dataValue.contains("iPhone") || dataValue.contains("iPad")) {

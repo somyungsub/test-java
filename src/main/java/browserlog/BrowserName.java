@@ -2,6 +2,7 @@ package browserlog;
 
 public enum BrowserName {
 
+
   Chrome("Chrome") {
     @Override
     String getVersionCheck(String dataValue) {

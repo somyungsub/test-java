@@ -1,10 +1,6 @@
 package excel;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.jxls.common.Context;
-import org.jxls.transform.poi.PoiTransformer;
 import org.jxls.util.JxlsHelper;
 
 import java.io.IOException;
